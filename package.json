@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Concentration game with using react and redux libraries",
   "main": "index.js",
-  "babel":{
-    "presets" : [
+  "babel": {
+    "presets": [
       "@babel/preset-env",
       "@babel/preset-react"
     ]
@@ -27,7 +27,9 @@
   "homepage": "https://github.com/Virali/ConcentrationGame#readme",
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
