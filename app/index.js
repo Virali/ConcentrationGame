@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import App from './App.js';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './card_component/reducers';
 
-class App extends React.Component{
-    render(){
-        return(
-            <div>Hello World</div>
-        )
-    }
-}
+const store = createStore(reducer);
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+   <Provider store={store}>
+     <App />
+   </Provider>,
+   document.getElementById('root')
+)
