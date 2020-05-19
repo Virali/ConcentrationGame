@@ -11,7 +11,19 @@ module.exports = {
         rules : [
             {test : /\.(js)$/, use:'babel-loader'},
             {test : /\.css$/, use:['style-loader', 'css-loader']},
-            {test: /\.s[ac]ss$/i, use:['style-loader', 'css-loader', 'sass-loader']},
+            {
+                test: /\.s[ac]ss$/i, 
+                use:[
+                    'style-loader', 
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: "[local]",
+                            },
+                        },
+                    }, 
+                    'sass-loader']},
             {
                 test: /\.(png|jp(e*)g|svg)$/,  
                 use: [{
