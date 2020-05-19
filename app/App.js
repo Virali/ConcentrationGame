@@ -7,7 +7,23 @@ class App extends React.Component{
     render(){
         return(
             <Fragment>
-                <div>Hello World</div>
+                <div>Find Pair Game
+                    <button 
+                        id='start'
+                        
+                    >
+                    Start
+                    </button>
+
+                    <label for='level'> 
+                    Choose a difficulty level
+                    </label>
+                    <select id='level'>
+                        <option value='easy'>Easy</option>
+                        <option value='medium'>Medium</option>
+                        <option value='hard'>Hard</option>
+                    </select>
+                </div>
                 <CardBox/>
             </Fragment>
         )

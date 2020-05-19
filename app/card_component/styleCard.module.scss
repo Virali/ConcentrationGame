@@ -1,10 +1,13 @@
 .card {
-   height: 20px;
-   width: 14px;
-   padding: 4px;
+   height: 50px;
+   width: 35px;
+   padding: 10px;
+   display: block;
+   border: 1px solid rgba(102, 99, 99, 0.521);
+   margin: 5px;
 }
 
-.face-down {
+.face_down {
    background-image: url('cardFaceDown.jpg');
    background-size: contain;
 }

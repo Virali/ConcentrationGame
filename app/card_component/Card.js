@@ -1,17 +1,17 @@
-import React, { Fragment, useState } from 'react';
-import classes from './styleCard.module.scss'
+import React, { useState } from 'react';
+import styles from './styleCard.module.scss';
 
 function Card(props) {
-   [face, setFace] = useState(false);
+   const [face, setFace] = useState(false);
    const faceUp = {
-      color: props.color,
+      backgroundColor: (face) ? props.color: '',
    };
 
    return (
       <div 
-         className={`${classes.card} ${ face ? '' : classes.face-down}`}
+         className={`${styles.card} ${ face ? '' : styles.face_down}`}
          onClick={() => setFace(!face)}
-         style={face ? faceUp : ''}
+         style={faceUp}
       />
    );
 }
