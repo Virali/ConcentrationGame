@@ -11,3 +11,12 @@
    background-image: url('cardFaceDown.jpg');
    background-size: contain;
 }
+
+.face_up {
+   pointer-events: none;
+}
+
+.guessed {
+   background-color: lighten($color: #14acc0, $amount: 50);
+   pointer-events: none;
+}

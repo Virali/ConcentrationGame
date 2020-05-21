@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import App from './start_component/App.js';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './card_component/reducers';
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+//import reducerComposition from './reducerComposition';
+import reducer from './start_component/reducers';
 
-const store = createStore(reducer);
+const store = createStore(reducer, [], applyMiddleware(logger));
 
 ReactDOM.render(
    <Provider store={store}>
