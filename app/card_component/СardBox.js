@@ -1,10 +1,13 @@
 import React from 'react';
 import Card from './Card.js';
 import { connect } from 'react-redux';
+import styles from './styleCard.module.scss';
 
 function CardBox(props) {
    return (
-      <div>
+      <div
+         className={styles.container}
+      >
          {props.set}
       </div>
    );

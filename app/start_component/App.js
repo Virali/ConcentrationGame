@@ -32,11 +32,12 @@ class App extends React.Component {
                Start
                </button>
 
-               <label for='level'> 
+               <label htmlFor='level'> 
                Choose a difficulty level
                </label>
                <select 
-                  id='level'>
+                  id='level'
+                  onChange={this.changeDifficulty}>
                   <option value='easy'>Easy</option>
                   <option value='medium'>Medium</option>
                   <option value='hard'>Hard</option>

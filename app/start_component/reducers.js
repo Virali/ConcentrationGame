@@ -1,48 +1,58 @@
-const set = []; // card numbers: easy - 12,  med - 20, hard - 32
+function createSet(cardQuantity) {  // number of cards: easy - 12,  med - 20, hard - 32
+   const set = [];
 
-for (let index = 0; index < 16; index++) {
-   const card = {
-      opened: false,
-      guessed: false,
-      sign: index,
-      id: Symbol(index)
+   for (let index = 0; index < cardQuantity/2; index++) {
+      const card = {
+         opened: false,
+         guessed: false,
+         sign: index,
+         id: Symbol(index)
+      }
+      set.push(
+         card, 
+         Object.defineProperty(Object.assign({},card), 'id', {
+            value: Symbol(index),
+            configurable: true,
+            enumerable: true,
+            writable: true
+         })
+      );
    }
-   set.push(
-      card, 
-      Object.defineProperty(Object.assign({},card), 'id', {
-         value: Symbol(index),
-         configurable: true,
-         enumerable: true,
-         writable: true
-      })
-   );
+
+   return set;
 }
 
 function shuffle(array) {
    return array.sort(() => Math.random() - 0.5);
 }
 
-let openedCards = [];
-
 function app(state = [], action) {
    switch (action.type) {
       case 'START': {
          switch (action.difficulty) {
             case 'easy': 
-               return shuffle(set.slice(0,12));
+               return shuffle(createSet(12));
             case 'medium':
-               return shuffle(set.slice(0,20));
+               return shuffle(createSet(20));
             case 'hard': 
-               return shuffle(set);
+               return shuffle(createSet(32));
          }
       }
       case 'SHOW_CARD': {
-         const newState = state.filter(card => {
+         return state.filter(card => {
             if(card.id === action.id) {
                card.opened = true;
-               openedCards.push(card)
             }
             return true;
+         });
+      }
+      case 'CHECK_COINCIDENCE': {
+         const newState = [...state];
+
+         const openedCards = newState.filter(card => {
+            if(card.opened) 
+               if(!card.guessed)
+                  return true;
          });
 
          if(openedCards.length === 2) {
@@ -51,7 +61,6 @@ function app(state = [], action) {
             } else {
                openedCards.forEach(card => card.opened = false);
             }
-            openedCards = [];
          }
 
          return newState;
