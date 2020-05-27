@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styleCard.module.scss';
-import { showCard, checkCards } from './actions';
+import { showBlockCheckUnblock } from './actions';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 function Card(props) {
    return (
@@ -13,8 +12,7 @@ function Card(props) {
             ${ props.guessed ? styles.guessed : ''}
          `}
          onClick={() => {
-            props.show(props.id);
-            setTimeout(() => props.check(), 400); // where to forbid click after two cards revealed?
+            props.showAndCheck(props.id)
          }}
       >
          {(props.opened) ? props.sign : ''}
@@ -23,10 +21,9 @@ function Card(props) {
 }
 
 function mapDispatchToProps(dispatch) {
-   return bindActionCreators({
-      show : showCard,
-      check : checkCards
-   },dispatch);
+   return {
+      showAndCheck: (id) => showBlockCheckUnblock(dispatch, id)
+   }
 }
 
 export default connect(null, mapDispatchToProps)(Card);

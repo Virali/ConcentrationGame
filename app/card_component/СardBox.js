@@ -6,7 +6,7 @@ import styles from './styleCard.module.scss';
 function CardBox(props) {
    return (
       <div
-         className={styles.container}
+         className={`${ styles.flexbox } ${ props.isBlocked ? styles.no_pointer_events : '' }`}
       >
          {props.set}
       </div>
@@ -16,7 +16,7 @@ function CardBox(props) {
 function mapStateToProps(state) {
    let simpleKey = 0;
    return {
-      set: state.map(element => {
+      set: state.cardsSet.map(element => {
          simpleKey++;
          return <Card 
             key={simpleKey}
@@ -26,6 +26,7 @@ function mapStateToProps(state) {
             sign={element.sign}
          />
       }),
+      isBlocked: state.blockManager
    }
 }
 

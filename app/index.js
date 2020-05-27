@@ -4,14 +4,13 @@ import App from './start_component/App.js';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-//import reducerComposition from './reducerComposition';
-import reducer from './start_component/reducers';
+import rootReducer from './rootReducer';
 
-const store = createStore(reducer, [], applyMiddleware(logger));
+const store = createStore(rootReducer, [], applyMiddleware(logger));
 
 ReactDOM.render(
    <Provider store={store}>
-     <App />
+     <App/>
    </Provider>,
    document.getElementById('root')
 )

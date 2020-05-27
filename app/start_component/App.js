@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import '../card_component/СardBox.js';
-import styles from './app.module.scss';
+import style from './app.module.scss';
 import CardBox from '../card_component/СardBox.js';
 import { connect } from 'react-redux';
 import { start } from "./actions";
@@ -23,7 +23,9 @@ class App extends React.Component {
 
    render(){
       return(
-         <Fragment>
+         <div 
+            className={style.container}
+         >
             <div>Find Pair Game
                <button 
                   id='start'
@@ -44,7 +46,7 @@ class App extends React.Component {
                </select>
             </div>
             <CardBox/>
-         </Fragment>
+         </div>
       )
    }
 }
