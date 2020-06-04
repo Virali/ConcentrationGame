@@ -1,17 +1,21 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import '../card_component/СardBox.js';
-import style from './app.module.scss';
+import styles from './app.module.scss';
 import CardBox from '../card_component/СardBox.js';
+import Timer from '../timer_component/Timer.js';
+import Modal from '../modal_component/Modal';
 import { connect } from 'react-redux';
 import { start } from "./actions";
-import { bindActionCreators } from 'redux';
+import { startTimer } from '../timer_component/actions';
 
 class App extends React.Component {
    constructor(props) {
       super(props);
       this.changeDifficulty = this.changeDifficulty.bind(this);
+      this.initiateStart = this.initiateStart.bind(this);
       this.state = { 
-         difficulty: 'easy'
+         difficulty: 'easy',
+         modalVisibily: false
       }
    }
 
@@ -21,40 +25,53 @@ class App extends React.Component {
       });
    }
 
+   initiateStart(difficulty) {
+      this.props.createSet(difficulty);
+      this.props.startTimer();
+   }
+
    render(){
       return(
          <div 
-            className={style.container}
-         >
+         className={styles.container}
+         id='main_container'>
             <div>Find Pair Game
                <button 
-                  id='start'
-                  onClick={() => this.props.initiateStart(this.state.difficulty)}
-               >
-               Start
+               id='start'
+               onClick={() => this.initiateStart(this.state.difficulty)}>
+                  Start
                </button>
 
                <label htmlFor='level'> 
                Choose a difficulty level
                </label>
                <select 
-                  id='level'
-                  onChange={this.changeDifficulty}>
+               id='level'
+               onChange={this.changeDifficulty}>
                   <option value='easy'>Easy</option>
                   <option value='medium'>Medium</option>
                   <option value='hard'>Hard</option>
                </select>
             </div>
+            <Timer/>
             <CardBox/>
+            <Modal>
+               You win for {Math.floor(this.props.time / 60)} minutes {(this.props.time % 60)} seconds
+            </Modal>
          </div>
       )
    }
 }
 
-function mapDispatchToProps(dispatch) {
-   return bindActionCreators({
-      initiateStart: start,
-   },dispatch);
+function mapStateToProps(state) {
+   return {
+      time: state.timeHandler
+   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = {
+   createSet: start,
+   startTimer: startTimer
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

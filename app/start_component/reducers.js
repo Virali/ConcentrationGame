@@ -19,7 +19,7 @@ function findOpenedNotGuessed(card) {
 }
 
 function cardReducer(state = [], action) {
-   switch (action.type) {
+   switch(action.type) {
       case 'START': {
          switch (action.difficulty) {
             case 'easy': 

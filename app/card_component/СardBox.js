@@ -6,8 +6,7 @@ import styles from './styleCard.module.scss';
 function CardBox(props) {
    return (
       <div
-         className={`${ styles.flexbox } ${ props.isBlocked ? styles.no_pointer_events : '' }`}
-      >
+         className={`${ styles.flexbox } ${ props.isBlocked ? styles.no_pointer_events : '' }`}>
          {props.set}
       </div>
    );

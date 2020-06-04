@@ -3,14 +3,14 @@ const CHECK_COINCIDENCE = 'CHECK_COINCIDENCE';
 const BLOCK_CLICKING = 'BLOCK_CLICKING';
 const UNBLOCK_CLICKING = 'UNBLOCK_CLICKING';
 
-export function showCard(id) {
+function showCard(id) {
    return {
       type: SHOW_CARD,
       id
    }
 }
 
-export function checkCards() {
+function checkCards() {
    return {
       type: CHECK_COINCIDENCE
    }
@@ -35,5 +35,5 @@ export function showBlockCheckUnblock(dispatch, id) {
    setTimeout(() => {
       dispatch(checkCards()),
       dispatch(unblockClicking())
-   },700);
+   }, 600);
 }
